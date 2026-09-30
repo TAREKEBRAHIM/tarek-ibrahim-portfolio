@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urbanza | Shop</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- Top announcement bar -->
+<div class="announcement">
+  <p>Free shipping on all orders over $75 &nbsp;|&nbsp; Use code <strong>URBAN10</strong> for 10% off</p>
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <button class="icon-btn mobile-only" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+
+    <a href="#" class="brand"><i class="fa-solid fa-bag-shopping"></i> Urbanza</a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#" class="nav-link active" data-filter="all">Shop All</a>
+      <a href="#" class="nav-link" data-filter="men">Men</a>
+      <a href="#" class="nav-link" data-filter="women">Women</a>
+      <a href="#" class="nav-link" data-filter="accessories">Accessories</a>
+      <a href="#" class="nav-link" data-filter="footwear">Footwear</a>
+      <a href="#deals-section" class="nav-link">Deals</a>
+    </nav>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Search products...">
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="wishlistBtn" title="Wishlist">
+        <i class="fa-solid fa-heart"></i>
+        <span class="badge" id="wishlistCount">0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" title="Cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-tag">New Season Arrivals</span>
+    <h1>Style That Moves <br>With You</h1>
+    <p>Discover curated fashion, accessories &amp; footwear crafted for everyday confidence.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="#deals-section" class="btn-outline">View Deals</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://picsum.photos/seed/urbanza-hero/560/560" alt="Featured fashion">
+    <div class="hero-badge">
+      <i class="fa-solid fa-tags"></i>
+      <div><strong>Up to 40% OFF</strong><span>On selected items</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Category strip -->
+<section class="categories">
+  <div class="category-card" data-filter="men">
+    <img src="https://picsum.photos/seed/urbanza-men/300/200" alt="Men">
+    <span>Men</span>
+  </div>
+  <div class="category-card" data-filter="women">
+    <img src="https://picsum.photos/seed/urbanza-women/300/200" alt="Women">
+    <span>Women</span>
+  </div>
+  <div class="category-card" data-filter="accessories">
+    <img src="https://picsum.photos/seed/urbanza-acc/300/200" alt="Accessories">
+    <span>Accessories</span>
+  </div>
+  <div class="category-card" data-filter="footwear">
+    <img src="https://picsum.photos/seed/urbanza-shoes/300/200" alt="Footwear">
+    <span>Footwear</span>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="products-section" id="products">
+  <div class="section-heading">
+    <div>
+      <h2>Featured Products</h2>
+      <p>Handpicked items just for you</p>
+    </div>
+    <div class="sort-box">
+      <label for="sortSelect">Sort by</label>
+      <select id="sortSelect">
+        <option value="default">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="filter-chips" id="filterChips">
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="men">Men</button>
+    <button class="chip" data-filter="women">Women</button>
+    <button class="chip" data-filter="accessories">Accessories</button>
+    <button class="chip" data-filter="footwear">Footwear</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid"></div>
+  <p class="no-results" id="noResults" hidden>No products match your search.</p>
+</section>
+
+<!-- Deals -->
+<section class="deals" id="deals-section">
+  <div class="deals-content">
+    <span class="hero-tag light">Limited Time</span>
+    <h2>Season End Sale</h2>
+    <p>Grab your favorite styles before they're gone. Discounts up to 50% on select collections.</p>
+    <div class="countdown" id="countdown">
+      <div><span id="cd-hours">00</span><small>Hours</small></div>
+      <div><span id="cd-minutes">00</span><small>Minutes</small></div>
+      <div><span id="cd-seconds">00</span><small>Seconds</small></div>
+    </div>
+  </div>
+  <img src="https://picsum.photos/seed/urbanza-deal/480/360" alt="Sale">
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <h2>Join Our Newsletter</h2>
+  <p>Get 10% off your first order and updates on new arrivals.</p>
+  <form id="newsletterForm">
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit" class="btn-primary">Subscribe</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <a href="#" class="brand"><i class="fa-solid fa-bag-shopping"></i> Urbanza</a>
+      <p>Modern fashion for a modern life. Quality apparel, honest prices.</p>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">Accessories</a>
+      <a href="#">Footwear</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Contact Us</a>
+      <a href="#">Shipping Info</a>
+      <a href="#">Returns</a>
+      <a href="#">FAQs</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Urbanza. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Cart Sidebar -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
+    <button class="icon-btn" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-empty" id="cartEmpty">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <p>Your cart is empty</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-row">
+      <span>Subtotal</span>
+      <strong id="cartSubtotal">$0.00</strong>
+    </div>
+    <p class="cart-note">Shipping and taxes calculated at checkout.</p>
+    <button class="btn-primary full" id="checkoutBtn">Checkout</button>
+  </div>
+</aside>
+
+<!-- Wishlist Sidebar -->
+<aside class="cart-panel" id="wishlistPanel">
+  <div class="cart-header">
+    <h3><i class="fa-solid fa-heart"></i> Wishlist</h3>
+    <button class="icon-btn" id="closeWishlist"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="wishlistItems"></div>
+  <div class="cart-empty" id="wishlistEmpty">
+    <i class="fa-solid fa-heart"></i>
+    <p>Your wishlist is empty</p>
+  </div>
+</aside>
+
+<!-- Quick View Modal -->
+<div class="modal" id="quickViewModal">
+  <div class="modal-box quick-view">
+    <button class="icon-btn modal-close" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+    <div class="quick-view-body" id="quickViewBody"></div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Checkout</h3>
+      <button class="icon-btn" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="checkoutForm">
+      <label>Full Name
+        <input type="text" name="name" required placeholder="e.g. Alex Morgan">
+      </label>
+      <label>Email
+        <input type="email" name="email" required placeholder="you@example.com">
+      </label>
+      <label>Shipping Address
+        <input type="text" name="address" required placeholder="123 Main St, City">
+      </label>
+      <div class="form-row">
+        <label>Card Number
+          <input type="text" name="card" required placeholder="**** **** **** ****" maxlength="19">
+        </label>
+        <label>Expiry
+          <input type="text" name="expiry" required placeholder="MM/YY" maxlength="5">
+        </label>
+      </div>
+      <div class="checkout-summary">
+        <div class="cart-row"><span>Order Total</span><strong id="checkoutTotal">$0.00</strong></div>
+      </div>
+      <button type="submit" class="btn-primary full">Place Order</button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/script.js" defer></script>
+</body>
+</html>

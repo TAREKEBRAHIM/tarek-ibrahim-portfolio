@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCare | Clinic Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <i class="fa-solid fa-staff-snake"></i>
+        <span class="logo-text">MediCare</span>
+      </div>
+      <button class="icon-btn" id="sidebarClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <nav class="nav-menu">
+      <p class="nav-label">Main</p>
+      <a href="#" class="nav-item active" data-section="overview">
+        <i class="fa-solid fa-grid-2"></i><span>Overview</span>
+      </a>
+      <a href="#" class="nav-item" data-section="appointments">
+        <i class="fa-solid fa-calendar-check"></i><span>Appointments</span>
+      </a>
+      <a href="#" class="nav-item" data-section="patients">
+        <i class="fa-solid fa-user-injured"></i><span>Patients</span>
+      </a>
+      <a href="#" class="nav-item" data-section="doctors">
+        <i class="fa-solid fa-user-doctor"></i><span>Doctors</span>
+      </a>
+
+      <p class="nav-label">Management</p>
+      <a href="#" class="nav-item" data-section="pharmacy">
+        <i class="fa-solid fa-pills"></i><span>Pharmacy</span>
+      </a>
+      <a href="#" class="nav-item" data-section="billing">
+        <i class="fa-solid fa-file-invoice-dollar"></i><span>Billing</span>
+      </a>
+      <a href="#" class="nav-item" data-section="settings">
+        <i class="fa-solid fa-gear"></i><span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="upgrade-card">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <p>Need Help?</p>
+        <span>Contact clinic support 24/7</span>
+        <button>Contact Us</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Main content -->
+  <div class="main">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn" id="sidebarOpen"><i class="fa-solid fa-bars"></i></button>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search patients, doctors, records...">
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="datetime" id="datetime">--</span>
+        <button class="icon-btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="icon-btn notif-btn" title="Notifications">
+          <i class="fa-solid fa-bell"></i>
+          <span class="badge">3</span>
+        </button>
+        <div class="profile">
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=Dr%20Ayla&backgroundColor=2563eb" alt="profile">
+          <div class="profile-info">
+            <strong>Dr. Ayla Rahman</strong>
+            <small>Administrator</small>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- OVERVIEW SECTION -->
+      <section class="page active" id="overview">
+        <div class="page-heading">
+          <div>
+            <h1>Clinic Overview</h1>
+            <p>Welcome back, here's what's happening today.</p>
+          </div>
+          <button class="btn-primary" id="newAppointmentBtn"><i class="fa-solid fa-plus"></i> New Appointment</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fa-solid fa-user-injured"></i></div>
+            <div class="stat-info">
+              <h3 id="statPatients">0</h3>
+              <p>Total Patients</p>
+            </div>
+            <span class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 8.2%</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="stat-info">
+              <h3 id="statAppointments">0</h3>
+              <p>Today's Appointments</p>
+            </div>
+            <span class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 4.6%</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="stat-info">
+              <h3 id="statDoctors">0</h3>
+              <p>Available Doctors</p>
+            </div>
+            <span class="stat-trend down"><i class="fa-solid fa-arrow-trend-down"></i> 1.1%</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange"><i class="fa-solid fa-sack-dollar"></i></div>
+            <div class="stat-info">
+              <h3 id="statRevenue">$0</h3>
+              <p>Monthly Revenue</p>
+            </div>
+            <span class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 12.4%</span>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Patient Visits</h3>
+              <select id="visitsRange">
+                <option>Last 7 days</option>
+                <option>Last 30 days</option>
+              </select>
+            </div>
+            <canvas id="visitsChart" height="140"></canvas>
+          </div>
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Patients by Department</h3>
+            </div>
+            <canvas id="deptChart" height="140"></canvas>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card table-card">
+            <div class="card-header">
+              <h3>Upcoming Appointments</h3>
+              <a href="#" class="link" data-section="appointments">View all</a>
+            </div>
+            <div class="table-wrap">
+              <table id="upcomingTable">
+                <thead>
+                  <tr><th>Patient</th><th>Doctor</th><th>Time</th><th>Status</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card list-card">
+            <div class="card-header">
+              <h3>Doctors on Duty</h3>
+            </div>
+            <ul class="doctor-list" id="doctorsOnDuty"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- APPOINTMENTS SECTION -->
+      <section class="page" id="appointments">
+        <div class="page-heading">
+          <div>
+            <h1>Appointments</h1>
+            <p>Manage all scheduled appointments.</p>
+          </div>
+          <button class="btn-primary" data-open-modal="appointmentModal"><i class="fa-solid fa-plus"></i> Add Appointment</button>
+        </div>
+        <div class="card table-card">
+          <div class="card-header">
+            <h3>All Appointments</h3>
+            <div class="filter-group">
+              <input type="text" id="apptSearch" placeholder="Search appointments...">
+              <select id="apptStatusFilter">
+                <option value="all">All Status</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Pending">Pending</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="appointmentsTable">
+              <thead>
+                <tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PATIENTS SECTION -->
+      <section class="page" id="patients">
+        <div class="page-heading">
+          <div>
+            <h1>Patients</h1>
+            <p>All registered patients in the clinic.</p>
+          </div>
+          <button class="btn-primary" data-open-modal="patientModal"><i class="fa-solid fa-plus"></i> Add Patient</button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Patient Records</h3>
+            <input type="text" id="patientSearch" placeholder="Search patients...">
+          </div>
+          <div class="patients-grid" id="patientsGrid"></div>
+        </div>
+      </section>
+
+      <!-- DOCTORS SECTION -->
+      <section class="page" id="doctors">
+        <div class="page-heading">
+          <div>
+            <h1>Doctors</h1>
+            <p>Medical staff directory.</p>
+          </div>
+        </div>
+        <div class="doctors-grid" id="doctorsGrid"></div>
+      </section>
+
+      <!-- PHARMACY SECTION -->
+      <section class="page" id="pharmacy">
+        <div class="page-heading">
+          <div>
+            <h1>Pharmacy Inventory</h1>
+            <p>Track medicine stock levels.</p>
+          </div>
+        </div>
+        <div class="card table-card">
+          <div class="table-wrap">
+            <table id="pharmacyTable">
+              <thead>
+                <tr><th>Medicine</th><th>Category</th><th>Stock</th><th>Price</th><th>Status</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- BILLING SECTION -->
+      <section class="page" id="billing">
+        <div class="page-heading">
+          <div>
+            <h1>Billing</h1>
+            <p>Invoices and payment history.</p>
+          </div>
+        </div>
+        <div class="card table-card">
+          <div class="table-wrap">
+            <table id="billingTable">
+              <thead>
+                <tr><th>Invoice #</th><th>Patient</th><th>Amount</th><th>Date</th><th>Status</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS SECTION -->
+      <section class="page" id="settings">
+        <div class="page-heading">
+          <div>
+            <h1>Settings</h1>
+            <p>Manage your dashboard preferences.</p>
+          </div>
+        </div>
+        <div class="card settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Dark Mode</strong>
+              <p>Toggle between light and dark theme.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="darkModeSwitch">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Email Notifications</strong>
+              <p>Receive updates about appointments via email.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>SMS Reminders</strong>
+              <p>Send SMS reminders to patients.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Appointment Modal -->
+<div class="modal" id="appointmentModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>New Appointment</h3>
+      <button class="icon-btn" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="appointmentForm">
+      <label>Patient Name
+        <input type="text" name="patient" required placeholder="e.g. John Carter">
+      </label>
+      <label>Doctor
+        <select name="doctor" id="apptDoctorSelect" required></select>
+      </label>
+      <div class="form-row">
+        <label>Date
+          <input type="date" name="date" required>
+        </label>
+        <label>Time
+          <input type="time" name="time" required>
+        </label>
+      </div>
+      <label>Status
+        <select name="status">
+          <option>Confirmed</option>
+          <option>Pending</option>
+        </select>
+      </label>
+      <button type="submit" class="btn-primary full">Save Appointment</button>
+    </form>
+  </div>
+</div>
+
+<!-- Patient Modal -->
+<div class="modal" id="patientModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>New Patient</h3>
+      <button class="icon-btn" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="patientForm">
+      <label>Full Name
+        <input type="text" name="name" required placeholder="e.g. Maria Gomez">
+      </label>
+      <div class="form-row">
+        <label>Age
+          <input type="number" name="age" required min="0" max="120">
+        </label>
+        <label>Gender
+          <select name="gender">
+            <option>Female</option>
+            <option>Male</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label>Condition / Reason
+        <input type="text" name="condition" placeholder="e.g. Routine Checkup">
+      </label>
+      <label>Phone
+        <input type="tel" name="phone" placeholder="+1 555 123 4567">
+      </label>
+      <button type="submit" class="btn-primary full">Save Patient</button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/script.js" defer></script>
+</body>
+</html>
