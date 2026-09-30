@@ -20,7 +20,7 @@
         <i class="fa-solid fa-staff-snake"></i>
         <span class="logo-text">MediCare</span>
       </div>
-      <button class="icon-btn" id="sidebarClose"><i class="fa-solid fa-xmark"></i></button>
+      <button class="icon-btn" id="sidebarClose" aria-label="Close navigation"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <nav class="nav-menu">
@@ -67,7 +67,7 @@
     <!-- Topbar -->
     <header class="topbar">
       <div class="topbar-left">
-        <button class="icon-btn" id="sidebarOpen"><i class="fa-solid fa-bars"></i></button>
+        <button class="icon-btn" id="sidebarOpen" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" id="searchInput" placeholder="Search patients, doctors, records...">
@@ -145,13 +145,13 @@
                 <option>Last 30 days</option>
               </select>
             </div>
-            <canvas id="visitsChart" height="140"></canvas>
+            <div class="chart-frame"><canvas id="visitsChart" height="140"></canvas></div>
           </div>
           <div class="card chart-card">
             <div class="card-header">
               <h3>Patients by Department</h3>
             </div>
-            <canvas id="deptChart" height="140"></canvas>
+            <div class="chart-frame"><canvas id="deptChart" height="140"></canvas></div>
           </div>
         </div>
 
@@ -161,7 +161,7 @@
               <h3>Upcoming Appointments</h3>
               <a href="#" class="link" data-section="appointments">View all</a>
             </div>
-            <div class="table-wrap">
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable data table">
               <table id="upcomingTable">
                 <thead>
                   <tr><th>Patient</th><th>Doctor</th><th>Time</th><th>Status</th></tr>
@@ -201,7 +201,7 @@
               </select>
             </div>
           </div>
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable data table">
             <table id="appointmentsTable">
               <thead>
                 <tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th></tr>
@@ -250,7 +250,7 @@
           </div>
         </div>
         <div class="card table-card">
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable data table">
             <table id="pharmacyTable">
               <thead>
                 <tr><th>Medicine</th><th>Category</th><th>Stock</th><th>Price</th><th>Status</th></tr>
@@ -270,7 +270,7 @@
           </div>
         </div>
         <div class="card table-card">
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable data table">
             <table id="billingTable">
               <thead>
                 <tr><th>Invoice #</th><th>Patient</th><th>Amount</th><th>Date</th><th>Status</th></tr>

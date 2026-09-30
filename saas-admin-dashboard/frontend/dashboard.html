@@ -16,7 +16,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <a href="#" class="brand"><i class="fa-solid fa-layer-group"></i> Saasly</a>
-      <button class="icon-btn" id="sidebarClose"><i class="fa-solid fa-xmark"></i></button>
+      <button class="icon-btn" id="sidebarClose" aria-label="Close navigation"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <nav class="nav-menu">
@@ -43,7 +43,7 @@
   <div class="main">
     <header class="topbar">
       <div class="topbar-left">
-        <button class="icon-btn mobile-only" id="sidebarOpen"><i class="fa-solid fa-bars"></i></button>
+        <button class="icon-btn mobile-only" id="sidebarOpen" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
         <h2 id="pageTitle">Overview</h2>
       </div>
       <div class="topbar-right">
@@ -83,11 +83,11 @@
         <div class="grid-2">
           <div class="card chart-card">
             <div class="card-header"><h3>Revenue Trend</h3></div>
-            <canvas id="revenueChart" height="140"></canvas>
+            <div class="chart-frame"><canvas id="revenueChart" height="140"></canvas></div>
           </div>
           <div class="card chart-card">
             <div class="card-header"><h3>Customers by Plan</h3></div>
-            <canvas id="planChart" height="140"></canvas>
+            <div class="chart-frame"><canvas id="planChart" height="140"></canvas></div>
           </div>
         </div>
 
@@ -116,7 +116,7 @@
               </select>
             </div>
           </div>
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable data table">
             <table id="customersTable">
               <thead><tr><th>Name</th><th>Company</th><th>Plan</th><th>MRR</th><th>Status</th><th>Joined</th><th></th></tr></thead>
               <tbody></tbody>
@@ -132,7 +132,7 @@
           <button class="btn-primary" id="addInvoiceBtn"><i class="fa-solid fa-plus"></i> New Invoice</button>
         </div>
         <div class="card table-card">
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable data table">
             <table id="invoicesTable">
               <thead><tr><th>Invoice #</th><th>Customer</th><th>Amount</th><th>Date</th><th>Status</th><th></th></tr></thead>
               <tbody></tbody>
@@ -156,7 +156,7 @@
           <button class="btn-primary" id="addUserBtn"><i class="fa-solid fa-plus"></i> Add Member</button>
         </div>
         <div class="card table-card">
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable data table">
             <table id="usersTable">
               <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th></th></tr></thead>
               <tbody></tbody>

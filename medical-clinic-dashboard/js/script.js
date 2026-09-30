@@ -62,12 +62,21 @@ function initNavigation() {
   const overlay = document.getElementById("overlay");
   document.getElementById("sidebarOpen").addEventListener("click", () => {
     sidebar.classList.add("open");
+    document.getElementById("sidebarOpen").setAttribute("aria-expanded", "true");
     overlay.classList.add("show");
   });
   document.getElementById("sidebarClose").addEventListener("click", closeSidebar);
   overlay.addEventListener("click", closeSidebar);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && sidebar.classList.contains("open")) {
+      closeSidebar();
+      document.getElementById("sidebarOpen").focus();
+    }
+  });
+  window.matchMedia("(max-width: 900px)").addEventListener("change", closeSidebar);
   function closeSidebar() {
     sidebar.classList.remove("open");
+    document.getElementById("sidebarOpen").setAttribute("aria-expanded", "false");
     overlay.classList.remove("show");
   }
 
@@ -163,6 +172,7 @@ function initCharts() {
       }]
     },
     options: {
+      maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
         y: { grid: { color: gridColor }, beginAtZero: true },
@@ -182,6 +192,7 @@ function initCharts() {
       }]
     },
     options: {
+      maintainAspectRatio: false,
       plugins: { legend: { position: "bottom", labels: { boxWidth: 10, padding: 12, font: { size: 11 } } } },
       cutout: "65%",
     }

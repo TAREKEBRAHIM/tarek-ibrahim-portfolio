@@ -19,11 +19,12 @@
 <!-- Header -->
 <header class="header" id="header">
   <div class="header-inner">
-    <button class="icon-btn mobile-only" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+    <button class="icon-btn mobile-only" id="menuToggle" aria-label="Open navigation" aria-controls="mainNav" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
 
     <a href="#" class="brand"><i class="fa-solid fa-bag-shopping"></i> Urbanza</a>
 
-    <nav class="main-nav" id="mainNav">
+    <nav class="main-nav" id="mainNav" aria-label="Shop navigation">
+      <button class="icon-btn" id="menuClose" aria-label="Close navigation"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
       <a href="#" class="nav-link active" data-filter="all">Shop All</a>
       <a href="#" class="nav-link" data-filter="men">Men</a>
       <a href="#" class="nav-link" data-filter="women">Women</a>
@@ -34,7 +35,7 @@
 
     <div class="search-box">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="Search products...">
+      <input type="text" id="searchInput" aria-label="Search products" placeholder="Search products...">
     </div>
 
     <div class="header-actions">
