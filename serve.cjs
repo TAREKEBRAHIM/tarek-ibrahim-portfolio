@@ -4,7 +4,7 @@ const rootFiles=new Set(['index.html','en.html','styles.css','app.js','contact-c
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.mp4':'video/mp4','.md':'text/plain; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp'};
 http.createServer((req,res)=>{let pathname;try{pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);}catch{res.writeHead(400).end();return;}
 const rel=pathname==='/'?'index.html':pathname.slice(1);const parts=rel.split('/');
-const allowed=rootFiles.has(rel)||rel==='saas-admin-dashboard/README.md'||(['ecommerce-website','medical-clinic-dashboard'].includes(parts[0])&&parts.every(p=>p&&!p.startsWith('.')&&!p.includes('\\')&&!p.includes(':')));
+const allowed=rootFiles.has(rel)||rel==='saas-admin-dashboard/README.md'||(['ecommerce-website','medical-clinic-dashboard','home-service-platform'].includes(parts[0])&&parts.every(p=>p&&!p.startsWith('.')&&!p.includes('\\')&&!p.includes(':')));
 const file=path.resolve(root,rel);if(!allowed||!file.startsWith(root+path.sep)){res.writeHead(404).end('Not found');return;}
 if(!['GET','HEAD'].includes(req.method)){res.writeHead(405).end();return;}
 fs.stat(file,(err,stat)=>{if(err||!stat.isFile()){res.writeHead(404).end('Not found');return;}const headers={'Content-Type':mime[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff','Accept-Ranges':'bytes'};let start=0,end=stat.size-1,status=200;

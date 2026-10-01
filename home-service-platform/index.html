@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f1">
+  <title>خِدمة | إدارة خدمات الصيانة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="خدمة، الرئيسية">
+        <span class="brand-mark" aria-hidden="true">خ</span>
+        <span><strong>خِدمة</strong><small>إدارة الخدمات المنزلية</small></span>
+      </a>
+      <div class="workspace-label">مساحة العمل</div>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <button class="nav-link active" data-view="overview"><span class="nav-icon">◫</span>نظرة عامة</button>
+        <button class="nav-link" data-view="requests"><span class="nav-icon">▤</span>الطلبات <span class="nav-count" id="nav-count">0</span></button>
+        <button class="nav-link" data-view="technicians"><span class="nav-icon">♙</span>الفنيون</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="help-panel">
+        <span class="help-mark">?</span>
+        <strong>محتاج مساعدة؟</strong>
+        <p>فريق الدعم متاح لمساعدتك.</p>
+        <a href="mailto:support@khedma.example">تواصل مع الدعم <span>↗</span></a>
+      </div>
+      <button class="account-button" type="button">
+        <span class="avatar avatar-owner">ع</span>
+        <span class="account-copy"><strong>عمر السيد</strong><small>مدير العمليات</small></span>
+        <span class="account-more" aria-hidden="true">···</span>
+      </button>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+        <div class="breadcrumbs"><span>مساحة العمل</span><b>/</b><strong id="page-crumb">نظرة عامة</strong></div>
+        <div class="topbar-actions">
+          <span class="today-label" id="today-label"></span>
+          <button class="icon-button notification-button" type="button" aria-label="الإشعارات">♧<i></i></button>
+          <span class="avatar avatar-top">ع</span>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="view active" id="view-overview" aria-labelledby="page-title">
+          <div class="page-heading">
+            <div><p class="eyebrow">متابعة يومية</p><h1 id="page-title">صباح الخير يا عمر <span>☀</span></h1><p class="heading-note">إليك ملخص حركة الطلبات اليوم.</p></div>
+            <button class="primary-button" data-open-modal><span>＋</span> طلب جديد</button>
+          </div>
+
+          <div class="stat-grid" id="stats-grid"></div>
+
+          <div class="overview-grid">
+            <section class="panel activity-panel" aria-labelledby="activity-title">
+              <div class="panel-heading">
+                <div><h2 id="activity-title">الطلبات الأخيرة</h2><p>تابع آخر التحديثات على الطلبات</p></div>
+                <button class="text-button" data-view="requests">كل الطلبات <span>←</span></button>
+              </div>
+              <div class="table-scroll"><table class="request-table"><thead><tr><th>الطلب</th><th>الخدمة</th><th>المنطقة</th><th>الفني</th><th>الحالة</th><th><span class="sr-only">إجراء</span></th></tr></thead><tbody id="recent-requests"></tbody></table></div>
+            </section>
+
+            <section class="panel weekly-panel" aria-labelledby="weekly-title">
+              <div class="panel-heading"><div><h2 id="weekly-title">حركة الطلبات</h2><p>آخر ٧ أيام</p></div><span class="chart-total"><strong id="weekly-total">0</strong><small>طلب</small></span></div>
+              <div class="chart-legend"><span><i></i>طلبات مكتملة</span><span><i></i>طلبات جديدة</span></div>
+              <div class="bar-chart" aria-label="رسم بياني لحركة الطلبات خلال آخر سبعة أيام" id="bar-chart"></div>
+              <div class="chart-footer"><span>الأسبوع الماضي</span><strong>+١٨٪ <b>↑</b></strong></div>
+            </section>
+          </div>
+
+          <section class="panel technician-strip" aria-labelledby="available-title">
+            <div class="panel-heading"><div><h2 id="available-title">الفنيون المتاحون</h2><p>الفنيون الجاهزون لاستقبال طلبات جديدة</p></div><button class="text-button" data-view="technicians">عرض الكل <span>←</span></button></div>
+            <div class="technician-list" id="available-technicians"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-requests" aria-labelledby="requests-title" hidden>
+          <div class="page-heading">
+            <div><p class="eyebrow">إدارة ومتابعة</p><h1 id="requests-title">كل الطلبات</h1><p class="heading-note">راجع الطلبات وحدّث حالة التنفيذ.</p></div>
+            <button class="primary-button" data-open-modal><span>＋</span> طلب جديد</button>
+          </div>
+          <section class="panel full-panel">
+            <div class="list-toolbar">
+              <div class="filter-tabs" role="group" aria-label="تصفية الطلبات">
+                <button class="filter-tab active" data-filter="all">الكل <span id="filter-count-all">0</span></button>
+                <button class="filter-tab" data-filter="new">جديدة</button>
+                <button class="filter-tab" data-filter="progress">قيد التنفيذ</button>
+                <button class="filter-tab" data-filter="done">مكتملة</button>
+              </div>
+              <label class="search-field"><span aria-hidden="true">⌕</span><input id="request-search" type="search" placeholder="ابحث عن طلب أو عميل" autocomplete="off"></label>
+            </div>
+            <div class="table-scroll"><table class="request-table wide-table"><thead><tr><th>الطلب</th><th>الخدمة</th><th>العميل</th><th>المنطقة</th><th>الفني</th><th>الموعد</th><th>السعر</th><th>الحالة</th><th><span class="sr-only">إجراء</span></th></tr></thead><tbody id="all-requests"></tbody></table></div>
+            <div class="empty-state" id="empty-requests" hidden><span>⌕</span><strong>مفيش طلبات مطابقة</strong><p>جرّب تغيّر البحث أو تختار تصفية تانية.</p></div>
+            <div class="table-footer"><span id="results-count">عرض ٠ طلب</span><span>بيانات تجريبية محفوظة على جهازك</span></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-technicians" aria-labelledby="technicians-title" hidden>
+          <div class="page-heading"><div><p class="eyebrow">فريق التنفيذ</p><h1 id="technicians-title">الفنيون</h1><p class="heading-note">حالة التوفر والطلبات المسندة لكل فني.</p></div><span class="availability-note"><i></i> حالة التوفر الحالية</span></div>
+          <div class="technician-cards" id="technician-cards"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="request-modal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-heading"><div><p class="eyebrow">تفاصيل الخدمة</p><h2 id="modal-title">إضافة طلب جديد</h2></div><button class="icon-button modal-close" type="button" aria-label="إغلاق">×</button></div>
+      <form id="request-form">
+        <label>اسم العميل<input name="customer" required maxlength="48" placeholder="مثال: منى إبراهيم"></label>
+        <div class="form-row"><label>نوع الخدمة<select name="service" required><option value="صيانة تكييف">صيانة تكييف</option><option value="سباكة">سباكة</option><option value="كهرباء">كهرباء</option><option value="تنظيف منزل">تنظيف منزل</option><option value="صيانة أجهزة">صيانة أجهزة</option></select></label><label>المنطقة<input name="area" required maxlength="32" placeholder="مثال: المعادي"></label></div>
+        <div class="form-row"><label>موعد الزيارة<input name="date" type="date" required></label><label>السعر التقديري <span class="field-hint">جنيه</span><input name="price" type="number" min="0" step="50" placeholder="500"></label></div>
+        <label>الفني المسؤول<select name="technician" id="technician-select"></select></label>
+        <div class="modal-actions"><button class="secondary-button modal-cancel" type="button">إلغاء</button><button class="primary-button" type="submit">حفظ الطلب <span>←</span></button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

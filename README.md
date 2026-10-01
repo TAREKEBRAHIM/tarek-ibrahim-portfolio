@@ -59,3 +59,7 @@ Existing environment files, local database contents, browser profiles and instal
 Edit `contact-config.js` to update the phone/email or add GitHub, LinkedIn and WhatsApp links. Both languages share that configuration. Update the corresponding HTML page to edit its text.
 
 The pages include translated metadata, language alternatives and Person structured data. After choosing a public domain, add canonical URLs, a sitemap and a social sharing image using the real deployed URLs.
+
+## Khedma home services
+
+Open `home-service-platform/index.html` to try the Arabic maintenance-request dashboard. The static demo supports creating and updating requests, searching and filtering, technician assignment, and browser-local persistence. Its data is stored in `localStorage`; this demo does not include a backend or authentication.
